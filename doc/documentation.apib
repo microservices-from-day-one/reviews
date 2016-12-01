@@ -1,0 +1,110 @@
+FORMAT: 1A
+
+# Reviews Service
+
+Reviews Service is a service responsible for managing book reviews.
+
+# Group Reviews
+
+Resources related to reviews in the API.
+
+## Review Collection
+
+# Reviews [/reviews]
+
+## Save a review [POST]
+You may create your own review using this action. It takes a JSON object containing review attributes.
+
++ Request (application/vnd.api+json)
+
+        {
+            "data": {
+                "type": "reviews",
+                "attributes": {
+                    "user_id": "535b5cf1-bbed-4079-970a-9ce2ed98c3d6",
+                    "book_id": "3cd10dd9-9120-47df-86b5-c3d767026101",
+                    "rating": 5,
+                    "subject": "Awesome Book!",
+                    "body": "Lorem ipsum ..."
+                }
+            }
+        }
+
++ Response 201 (application/vnd.api+json; charset=utf-8)
+
+        {
+          "data": {
+            "id": "a55f3b6c-0582-4976-b662-5e51c1d65261",
+            "type": "reviews",
+            "links": {
+              "self": "http://localhost:5005/reviews/a55f3b6c-0582-4976-b662-5e51c1d65261"
+            },
+            "attributes": {
+              "user_id": "535b5cf1-bbed-4079-970a-9ce2ed98c3d6",
+              "book_id": "3cd10dd9-9120-47df-86b5-c3d767026101",
+              "rating": 5,
+              "subject": "Awesome Book!",
+              "body": "Lorem ipsum ..."
+            }
+          }
+        }
+
+# Reviews by User [/reviews?filter%5Buser_id%5D={user_id}]
+Endpoint that will load all reviews associated with a specific user.
+
+##  Load reviews for a book [GET]
++ Parameters
+  + user_id (required, `535b5cf1-bbed-4079-970a-9ce2ed98c3d6`)
+
++ Request (application/vnd.api+json)
+
++ Response 200 (application/vnd.api+json; charset=utf-8)
+
+        {
+          "data": [
+            {
+              "id": "720f7ef4-ff99-47cf-959e-4d9f83339429",
+              "type": "reviews",
+              "links": {
+                "self": "http://localhost:5005/reviews/720f7ef4-ff99-47cf-959e-4d9f83339429"
+              },
+              "attributes": {
+                "user_id": "535b5cf1-bbed-4079-970a-9ce2ed98c3d6",
+                "book_id": "3cd10dd9-9120-47df-86b5-c3d767026101",
+                "rating": 5,
+                "subject": "Awesome Book!",
+                "body": "Lorem ipsum ..."
+              }
+            }
+          ]
+        }
+
+# Reviews by Book [/reviews?filter%5Bbook_id%5D={book_id}]
+Endpoint that will load all reviews associated with a specific book.
+
+##  Load reviews for a book [GET]
++ Parameters
+  + book_id (required, `3cd10dd9-9120-47df-86b5-c3d767026101`)
+
++ Request (application/vnd.api+json)
+
++ Response 200 (application/vnd.api+json; charset=utf-8)
+
+        {
+          "data": [
+            {
+              "id": "720f7ef4-ff99-47cf-959e-4d9f83339429",
+              "type": "reviews",
+              "links": {
+                "self": "http://localhost:5005/reviews/720f7ef4-ff99-47cf-959e-4d9f83339429"
+              },
+              "attributes": {
+                "user_id": "535b5cf1-bbed-4079-970a-9ce2ed98c3d6",
+                "book_id": "3cd10dd9-9120-47df-86b5-c3d767026101",
+                "rating": 5,
+                "subject": "Awesome Book!",
+                "body": "Lorem ipsum ..."
+              }
+            }
+          ]
+        }
